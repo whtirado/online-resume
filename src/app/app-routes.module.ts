@@ -1,19 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { SkillsComponent } from './skills/skills.component';
 import { ExperienceComponent } from './experience/experience.component';
+import { AboutAppComponent } from './about-app/about-app.component';
+import { AboutMeComponent } from './about-me/about-me.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { MessageComponent } from './message/message.component';
+import { MessageGuard } from './auth/message.guard';
 
 const routes: Routes = [
-  { path: 'App', component: HomeComponent },
+  { path: 'About-Me', component: AboutMeComponent },
+  { path: 'About-App', component: AboutAppComponent },
   { path: 'Skills', component: SkillsComponent },
   { path: 'Experience', component: ExperienceComponent },
-  { path: '**', redirectTo: 'App' },
+  {
+    path: 'Messages',
+    component: MessageComponent,
+    canActivate: [MessageGuard],
+  },
+  { path: 'Login', component: LoginComponent },
+  { path: 'Signup', component: SignupComponent },
+  { path: '**', redirectTo: 'About-Me' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [],
+  providers: [MessageGuard],
 })
 export class AppRoutingModule {}
