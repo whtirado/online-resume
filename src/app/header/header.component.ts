@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
 
@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
+@Injectable()
 export class HeaderComponent implements OnInit, OnDestroy {
   public authStatus = false;
   private authServiceSub: Subscription;
@@ -18,8 +19,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .getAuthStatusListener()
       .subscribe((newAuthStatus) => {
         this.authStatus = newAuthStatus;
-        console.log('new auth status', newAuthStatus);
       });
+
+    this.authService.autoAuth();
+  }
+
+  logoutUser() {
+    this.authService.logoutUser();
   }
 
   ngOnDestroy() {

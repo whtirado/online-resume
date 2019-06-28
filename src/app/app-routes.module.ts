@@ -7,7 +7,7 @@ import { AboutMeComponent } from './about-me/about-me.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { MessageComponent } from './message/message.component';
-import { MessageGuard } from './auth/message.guard';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: 'About-Me', component: AboutMeComponent },
@@ -17,16 +17,16 @@ const routes: Routes = [
   {
     path: 'Messages',
     component: MessageComponent,
-    canActivate: [MessageGuard],
+    canActivate: [AuthGuard],
   },
   { path: 'Login', component: LoginComponent },
-  { path: 'Signup', component: SignupComponent },
+  // { path: 'Signup', component: SignupComponent },
   { path: '**', redirectTo: 'About-Me' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [MessageGuard],
+  providers: [AuthGuard],
 })
 export class AppRoutingModule {}
