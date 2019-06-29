@@ -37,11 +37,14 @@ export class AuthService {
           'http://localhost:5000/api/auth/verify',
           tokenData
         )
-        .subscribe((response) => {
-          if (response.verified) {
-            this.setAuthData(true, tokenData.token);
-          }
-        });
+        .subscribe(
+          (response) => {
+            if (response.verified) {
+              this.setAuthData(true, tokenData.token);
+            }
+          },
+          (error) => {}
+        );
     }
   }
 

@@ -12,9 +12,11 @@ import { Subscription } from 'rxjs';
 })
 @Injectable()
 export class LoginComponent implements OnInit, OnDestroy {
+  private authServiceSub: Subscription;
+
   public isUserLoggedIn = false;
   public errorMessage = '';
-  private authServiceSub: Subscription;
+  public isLoading = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -31,20 +33,25 @@ export class LoginComponent implements OnInit, OnDestroy {
   validateCredentials(form: NgForm) {
     this.errorMessage = '';
     if (form.valid) {
-      console.log('form valid', form);
+      this.isLoading = true;
+
       const credentials: ICredentials = {
         email: form.value.email,
         password: form.value.password,
       };
+
       this.authService.loginUser(credentials).subscribe(
         (response) => {
           if (response.token) {
             this.authService.setAuthData(true, response.token);
             this.router.navigate(['/Messages']);
           }
+
+          this.isLoading = false;
         },
         (error) => {
-          this.errorMessage = error.error.message;
+          this.errorMessage = error.error.message || 'Server Error';
+          this.isLoading = false;
         }
       );
     } else {

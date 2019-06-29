@@ -46,8 +46,17 @@
                 required
               />
             </div>
-            <button type="submit" class="btn btn-primary">
-              Submit
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="isLoading"
+            >
+              <span *ngIf="!isLoading">
+                Sign In
+              </span>
+              <span *ngIf="isLoading">
+                <i class="fal fa-cog fa-spin"></i>
+              </span>
             </button>
           </form>
         </div>

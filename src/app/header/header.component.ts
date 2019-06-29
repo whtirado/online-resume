@@ -21,7 +21,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.authStatus = newAuthStatus;
       });
 
-    this.authService.autoAuth();
+    if (localStorage.getItem('token')) {
+      this.authService.autoAuth();
+    }
   }
 
   logoutUser() {
