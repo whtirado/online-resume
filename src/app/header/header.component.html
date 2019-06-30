@@ -76,6 +76,17 @@
         data-target=".navbar-collapse.show"
         *ngIf="!authStatus"
       >
+        <a class="nav-link" [routerLink]="['/Contact-Me']">
+          <i class="fal fa-paper-plane"></i>
+          Contact Me
+        </a>
+      </li>
+      <li
+        class="nav-item"
+        data-toggle="collapse"
+        data-target=".navbar-collapse.show"
+        *ngIf="!authStatus"
+      >
         <a class="nav-link" [routerLink]="['/Login']">
           <i class="fal fa-sign-in-alt"></i>
           Login

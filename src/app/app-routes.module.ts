@@ -8,6 +8,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { MessageComponent } from './message/message.component';
 import { AuthGuard } from './auth/auth.guard';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   { path: 'About-Me', component: AboutMeComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
     component: MessageComponent,
     canActivate: [AuthGuard],
   },
+  { path: 'Contact-Me', component: ContactComponent },
   { path: 'Login', component: LoginComponent },
   // { path: 'Signup', component: SignupComponent },
   { path: '**', redirectTo: 'About-Me' },

@@ -13,6 +13,7 @@ import { AboutMeComponent } from './about-me/about-me.component';
 import { AboutAppComponent } from './about-app/about-app.component';
 import { AuthModule } from './auth/auth.module';
 import { MessageComponent } from './message/message.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MessageComponent } from './message/message.component';
     AboutAppComponent,
     SkillsComponent,
     ExperienceComponent,
+    ContactComponent,
     MessageComponent,
   ],
   imports: [
@@ -30,6 +32,7 @@ import { MessageComponent } from './message/message.component';
     AppRoutingModule,
     AuthModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
