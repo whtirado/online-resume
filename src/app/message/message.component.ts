@@ -2,6 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { MessageService } from './message.service';
 import { IMessage } from './message.model';
 import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-message',
@@ -11,10 +12,12 @@ import { AuthService } from '../auth/auth.service';
 @Injectable()
 export class MessageComponent implements OnInit {
   public messages: IMessage[];
+  public errorMessage = '';
 
   constructor(
     private messageService: MessageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -22,11 +25,11 @@ export class MessageComponent implements OnInit {
       const tokenData = { token: this.authService.getToken() };
       this.messageService.getMessages(tokenData).subscribe(
         (response) => {
-          console.log('message response', response);
           this.messages = response.data;
         },
         (error) => {
           this.authService.clearAuthData();
+          this.router.navigate(['/Login']);
         }
       );
     }

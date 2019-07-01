@@ -6,13 +6,14 @@
     <div class="col">
       <div class="card shadow-sm mt-2 mb-2" *ngFor="let msg of messages">
         <div class="card-body">
-          <h5 class="card-title">{{ msg.subject }}</h5>
+          <h5 class="card-title">From: {{ msg.name }} ({{ msg.email }})</h5>
           <h6 class="card-subtitle mb-2 text-muted">
-            {{ msg.date }}
+            Subject: {{ msg.subject }}
           </h6>
-          <p class="card-text lead">
-            {{ msg.message }}
-          </p>
+          <h6 class="card-subtitle mb-2 text-muted">
+            Date: {{ msg.date | date: 'MMM dd, yyyy @ h:mm a' }}
+          </h6>
+          <p class="card-text lead">{{ msg.message }}</p>
         </div>
       </div>
     </div>
