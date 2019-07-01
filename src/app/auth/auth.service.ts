@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ICredentials } from './credentials.model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -34,7 +35,7 @@ export class AuthService {
     if (tokenData.token) {
       this.http
         .post<{ verified: boolean }>(
-          'http://localhost:5000/api/auth/verify',
+          environment.apiBaseUrl + '/api/auth/verify',
           tokenData
         )
         .subscribe(
@@ -50,7 +51,7 @@ export class AuthService {
 
   loginUser(loginCredentials) {
     return this.http.post<{ message: string; token: string }>(
-      'http://localhost:5000/api/auth/login',
+      environment.apiBaseUrl + '/api/auth/login',
       loginCredentials
     );
   }
@@ -58,7 +59,7 @@ export class AuthService {
   signupUser(loginCredentials) {
     this.http
       .post<{ message: string; data: object }>(
-        'http://localhost:5000/api/auth/signup',
+        environment.apiBaseUrl + '/api/auth/signup',
         loginCredentials
       )
       .subscribe(

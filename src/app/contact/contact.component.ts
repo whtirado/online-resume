@@ -11,6 +11,7 @@ import { ContactService } from './contact.service';
 @Injectable()
 export class ContactComponent implements OnInit {
   public isLoading = false;
+  public successMessage = '';
   public errorMessage = '';
 
   constructor(private contactService: ContactService) {}
@@ -18,6 +19,7 @@ export class ContactComponent implements OnInit {
   ngOnInit() {}
 
   submitMessage(form: NgForm) {
+    this.successMessage = '';
     this.errorMessage = '';
     if (form.valid) {
       this.isLoading = true;
@@ -34,6 +36,7 @@ export class ContactComponent implements OnInit {
         (response) => {
           form.resetForm();
           this.isLoading = false;
+          this.successMessage = response.message;
         },
         (error) => {
           this.errorMessage = error.error.message || 'Server Error';

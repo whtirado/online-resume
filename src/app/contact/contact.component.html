@@ -47,6 +47,13 @@
           >
             {{ errorMessage }}
           </div>
+          <div
+            *ngIf="successMessage.length"
+            class="alert alert-success"
+            role="alert"
+          >
+            {{ successMessage }}
+          </div>
           <form #messageForm="ngForm" (submit)="submitMessage(messageForm)">
             <div class="row">
               <div class="col">
