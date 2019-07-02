@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev": "nodemon server",
-    "postinstall": "ng build --aot --prod --env=prod"
+    "postinstall": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {

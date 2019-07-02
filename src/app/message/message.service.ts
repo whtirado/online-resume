@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { IMessage } from './message.model';
 import { AuthService } from '../auth/auth.service';
 import { IContact } from '../contact/contact.model';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class MessageService {
