@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { ICredentials } from './credentials.model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -35,7 +34,7 @@ export class AuthService {
     if (tokenData.token) {
       this.http
         .post<{ verified: boolean }>(
-          environment.apiBaseUrl + '/api/auth/verify',
+          'https://whtirado-online-resume-api.herokuapp.com/api/auth/verify',
           tokenData
         )
         .subscribe(
@@ -51,7 +50,7 @@ export class AuthService {
 
   loginUser(loginCredentials) {
     return this.http.post<{ message: string; token: string }>(
-      environment.apiBaseUrl + '/api/auth/login',
+      'https://whtirado-online-resume-api.herokuapp.com/api/auth/login',
       loginCredentials
     );
   }
@@ -59,7 +58,7 @@ export class AuthService {
   signupUser(loginCredentials) {
     this.http
       .post<{ message: string; data: object }>(
-        environment.apiBaseUrl + '/api/auth/signup',
+        'https://whtirado-online-resume-api.herokuapp.com/api/auth/signup',
         loginCredentials
       )
       .subscribe(
