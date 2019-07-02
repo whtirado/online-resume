@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 @Injectable()
 export class MessageComponent implements OnInit {
-  public messages: IMessage[];
+  public messages: IMessage[] = [];
   public errorMessage = '';
 
   constructor(
