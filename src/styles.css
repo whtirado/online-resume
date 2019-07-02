@@ -3,12 +3,19 @@
 html,
 body {
   height: 100%;
-  background-color: #fafafa !important;
 }
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 .pointer {
-  cursor: pointer;
+  cursor: pointer !important;
+}
+.no-border {
+  border: none !important;
+}
+.card {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
 }
