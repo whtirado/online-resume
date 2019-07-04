@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IContact } from './contact.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ContactService {
@@ -8,14 +9,14 @@ export class ContactService {
 
   sendMessage(message: IContact) {
     return this.http.post<{ message: string }>(
-      'https://whtirado-online-resume-api.herokuapp.com/api/contact/message/new',
+      environment.baseUrl + '/api/contact/message/new',
       message
     );
   }
 
   getMessage() {
     return this.http.get<any>(
-      'https://whtirado-online-resume-api.herokuapp.com/api/contact/message/list'
+      environment.baseUrl + '/api/contact/message/list'
     );
   }
 }

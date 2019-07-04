@@ -3,6 +3,7 @@ import { ICredentials } from './credentials.model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -34,7 +35,7 @@ export class AuthService {
     if (tokenData.token) {
       this.http
         .post<{ verified: boolean }>(
-          'https://whtirado-online-resume-api.herokuapp.com/api/auth/verify',
+          environment.baseUrl + '/api/auth/verify',
           tokenData
         )
         .subscribe(
@@ -50,7 +51,7 @@ export class AuthService {
 
   loginUser(loginCredentials) {
     return this.http.post<{ message: string; token: string }>(
-      'https://whtirado-online-resume-api.herokuapp.com/api/auth/login',
+      environment.baseUrl + '/api/auth/login',
       loginCredentials
     );
   }
@@ -58,7 +59,7 @@ export class AuthService {
   signupUser(loginCredentials) {
     this.http
       .post<{ message: string; data: object }>(
-        'https://whtirado-online-resume-api.herokuapp.com/api/auth/signup',
+        environment.baseUrl + '/api/auth/signup',
         loginCredentials
       )
       .subscribe(
