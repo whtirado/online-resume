@@ -1,26 +1,31 @@
 <section class="container mt-3 mb-3">
-  <header>
-    <h4>Messages</h4>
-  </header>
   <div class="row" *ngIf="messages.length">
-    <div class="col">
-      <div class="card shadow-sm mt-2 mb-2" *ngFor="let msg of messages">
-        <div class="card-body">
-          <h5 class="card-title">From: {{ msg.name }} ({{ msg.email }})</h5>
+    <div class="col-sm-12 col-md-8 offset-md-2">
+      <div
+        class="card mt-2 mb-2"
+        [ngClass]="{ 'no-border': isLast }"
+        *ngFor="let msg of messages; index as i; last as isLast"
+      >
+        <div class="">
+          <h5 class="card-title pointer">
+            From: {{ msg.name }} ({{ msg.email }})
+          </h5>
           <h6 class="card-subtitle mb-2 text-muted">
             Subject: {{ msg.subject }}
           </h6>
           <h6 class="card-subtitle mb-2 text-muted">
             Date: {{ msg.date | date: 'MMM dd, yyyy @ h:mm a' }}
           </h6>
-          <p class="card-text lead">{{ msg.message }}</p>
+          <p class="card-text pb-2">
+            <span class="lead">- {{ msg.message }}</span>
+          </p>
         </div>
       </div>
     </div>
   </div>
   <div class="row" *ngIf="!messages.length">
     <div class="col">
-      <div class="card shadow-sm mt-2 mb-2">
+      <div class="card no-border text-center mt-2 mb-2">
         <div class="card-body">
           <p class="card-text">
             No messages found...
