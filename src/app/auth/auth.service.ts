@@ -49,7 +49,7 @@ export class AuthService {
     }
   }
 
-  loginUser(loginCredentials) {
+  loginUser(loginCredentials: ICredentials) {
     return this.http.post<{ message: string; token: string }>(
       environment.baseUrl + '/api/auth/login',
       loginCredentials

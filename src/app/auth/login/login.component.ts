@@ -14,9 +14,23 @@ import { Subscription } from 'rxjs';
 export class LoginComponent implements OnInit, OnDestroy {
   private authServiceSub: Subscription;
 
+  private readonly passwordToggleLabels = {
+    show: 'Show',
+    hide: 'Hide',
+  };
+
+  private readonly inputTypes = {
+    text: 'text',
+    password: 'password',
+  };
+
   public isUserLoggedIn = false;
   public errorMessage = '';
   public isLoading = false;
+
+  public showPassword = false;
+  public inputType = this.inputTypes.password;
+  public passwordToggleLabel = this.passwordToggleLabels.show;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -28,6 +42,18 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.router.navigate(['/Messages']);
         }
       });
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+
+    this.inputType = this.showPassword
+      ? this.inputTypes.text
+      : this.inputTypes.password;
+
+    this.passwordToggleLabel = this.showPassword
+      ? this.passwordToggleLabels.hide
+      : this.passwordToggleLabels.show;
   }
 
   validateCredentials(form: NgForm) {

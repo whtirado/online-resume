@@ -30,7 +30,7 @@
                 email
               />
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <input
                 #password="ngModel"
                 type="password"
@@ -40,6 +40,26 @@
                 ngModel
                 required
               />
+            </div> -->
+            <div class="input-group mb-3">
+              <input
+                #password="ngModel"
+                [type]="inputType"
+                name="password"
+                class="form-control"
+                placeholder="Password"
+                ngModel
+                required
+              />
+              <div class="input-group-append">
+                <button
+                  (click)="toggleShowPassword()"
+                  class="btn btn-outline-secondary"
+                  type="button"
+                >
+                  {{ passwordToggleLabel }}
+                </button>
+              </div>
             </div>
             <button
               type="submit"
