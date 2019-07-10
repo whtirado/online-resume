@@ -26,6 +26,7 @@ export class MessageComponent implements OnInit {
       this.messageService.getMessages(tokenData).subscribe(
         (response) => {
           this.messages = response.data;
+          console.log('get messages response', response);
         },
         (error) => {
           this.authService.clearAuthData();
@@ -33,5 +34,26 @@ export class MessageComponent implements OnInit {
         }
       );
     }
+  }
+
+  onDelete(messageId: string) {
+    this.messageService.deleteMessage(messageId).subscribe(
+      (deleteResponse) => {
+        console.log('delete successful', deleteResponse);
+        const tokenData = { token: this.authService.getToken() };
+        this.messageService.getMessages(tokenData).subscribe(
+          (getResponse) => {
+            this.messages = getResponse.data;
+          },
+          (error) => {
+            this.authService.clearAuthData();
+            this.router.navigate(['/Login']);
+          }
+        );
+      },
+      (error) => {
+        console.log('delete failed', error);
+      }
+    );
   }
 }

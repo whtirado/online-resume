@@ -10,9 +10,15 @@ export class MessageService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getMessages(tokenData: { token: string }) {
-    return this.http.post<{ message: string; data: IContact[] }>(
+    return this.http.post<{ message: string; data: any }>(
       environment.baseUrl + '/api/contact/message/list',
       tokenData
+    );
+  }
+
+  deleteMessage(messageId: string) {
+    return this.http.delete(
+      environment.baseUrl + `/api/contact/message/${messageId}`
     );
   }
 }

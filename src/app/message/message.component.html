@@ -6,7 +6,7 @@
         [ngClass]="{ 'no-border': isLast }"
         *ngFor="let msg of messages; index as i; last as isLast"
       >
-        <div class="">
+        <div class="card-body">
           <h5 class="card-title pointer">
             From: {{ msg.name }} ({{ msg.email }})
           </h5>
@@ -19,6 +19,9 @@
           <p class="card-text pb-2">
             <span class="lead">- {{ msg.message }}</span>
           </p>
+          <button (click)="onDelete(msg._id)" class="btn btn-link">
+            Delete
+          </button>
         </div>
       </div>
     </div>
