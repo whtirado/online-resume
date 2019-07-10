@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable, OnDestroy } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Validator, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { ICredentials } from '../credentials.model';
 import { Router } from '@angular/router';
@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     password: 'password',
   };
 
+  public form;
+
   public isUserLoggedIn = false;
   public errorMessage = '';
   public isLoading = false;
@@ -32,9 +34,21 @@ export class LoginComponent implements OnInit, OnDestroy {
   public inputType = this.inputTypes.password;
   public passwordToggleLabel = this.passwordToggleLabels.show;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit() {
+    this.form = this.formBuilder.group({
+      email: this.formBuilder.control(
+        '',
+        Validators.compose([Validators.required, Validators.email])
+      ),
+      password: this.formBuilder.control('', Validators.required),
+    });
+
     this.authServiceSub = this.authService
       .getAuthStatusListener()
       .subscribe((response) => {
@@ -56,8 +70,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       : this.passwordToggleLabels.show;
   }
 
-  validateCredentials(form: NgForm) {
+  validateCredentials(form) {
     this.errorMessage = '';
+    console.log('form', form);
     if (form.valid) {
       this.isLoading = true;
 
@@ -80,8 +95,6 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.isLoading = false;
         }
       );
-    } else {
-      this.errorMessage = 'Please enter valid credentials';
     }
   }
 

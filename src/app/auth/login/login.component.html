@@ -17,39 +17,35 @@
           >
             {{ errorMessage }}
           </div>
-          <form #loginForm="ngForm" (submit)="validateCredentials(loginForm)">
+          <form [formGroup]="form" (submit)="validateCredentials(form)">
             <div class="form-group">
               <input
-                #email="ngModel"
+                formControlName="email"
                 type="email"
                 name="email"
                 class="form-control"
                 placeholder="Enter email"
-                ngModel
-                required
-                email
+                autocomplete="off"
               />
+              <div *ngIf="form.controls.email.touched">
+                <div
+                  class="error"
+                  *ngIf="form.get('email').hasError('required')"
+                >
+                  *Email Required
+                </div>
+                <div class="error" *ngIf="form.get('email').hasError('email')">
+                  *Please enter a valid email
+                </div>
+              </div>
             </div>
-            <!-- <div class="form-group">
+            <div class="input-group">
               <input
-                #password="ngModel"
-                type="password"
-                name="password"
-                class="form-control"
-                placeholder="Password"
-                ngModel
-                required
-              />
-            </div> -->
-            <div class="input-group mb-3">
-              <input
-                #password="ngModel"
+                formControlName="password"
                 [type]="inputType"
                 name="password"
                 class="form-control"
                 placeholder="Password"
-                ngModel
-                required
               />
               <div class="input-group-append">
                 <button
@@ -61,10 +57,18 @@
                 </button>
               </div>
             </div>
+            <div *ngIf="form.controls.password.touched">
+              <div
+                class="error"
+                *ngIf="form.get('password').hasError('required')"
+              >
+                *Password Required
+              </div>
+            </div>
             <button
               type="submit"
-              class="btn btn-primary"
-              [disabled]="isLoading"
+              class="btn btn-primary mt-2"
+              [disabled]="form.invalid"
             >
               <span *ngIf="!isLoading">
                 Sign In
