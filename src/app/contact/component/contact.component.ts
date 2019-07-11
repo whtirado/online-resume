@@ -43,7 +43,7 @@ export class ContactComponent implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.minLength(5),
-          Validators.maxLength(50),
+          Validators.maxLength(30),
         ])
       ),
       message: this.formBuilder.control(
@@ -60,7 +60,6 @@ export class ContactComponent implements OnInit {
   submitMessage(form) {
     this.successMessage = '';
     this.errorMessage = '';
-    console.log('contact form', form);
     if (form.valid) {
       this.isLoading = true;
       const message: IContact = {

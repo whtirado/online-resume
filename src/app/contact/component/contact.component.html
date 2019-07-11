@@ -40,6 +40,43 @@
           <h6 class="card-subtitle mb-1 text-muted">
             Feel free to send me a message
           </h6>
+          <a
+            href="#"
+            class="card-link"
+            data-toggle="modal"
+            data-target="#ContactModal"
+          >
+            <i class="fal fa-envelope"></i>
+            Compose Message
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal fade"
+    id="ContactModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="ContactModalTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ContactModalTitle">
+            Send me a message
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
           <div
             *ngIf="errorMessage.length"
             class="alert alert-warning"
@@ -54,7 +91,11 @@
           >
             {{ successMessage }}
           </div>
-          <form [formGroup]="form" (submit)="submitMessage(form)">
+          <form
+            *ngIf="!successMessage.length"
+            [formGroup]="form"
+            (submit)="submitMessage(form)"
+          >
             <div class="row">
               <div class="col-xs-12 col-md">
                 <div class="form-group">
@@ -97,7 +138,7 @@
                 class="form-control"
                 placeholder="Subject..."
                 autocomplete="off"
-                maxlength="50"
+                maxlength="30"
               />
               <app-contact-error
                 [contactFormControl]="form.get('subject')"
@@ -118,7 +159,7 @@
             </div>
             <button
               type="submit"
-              class="btn btn-primary mt-2"
+              class="btn btn-primary"
               [disabled]="form.invalid || isLoading"
             >
               <span *ngIf="!isLoading">
