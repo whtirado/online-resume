@@ -10,11 +10,7 @@
           <h6 class="card-subtitle mb-2 text-muted">
             Please enter credentials
           </h6>
-          <div
-            *ngIf="errorMessage.length"
-            class="alert alert-warning"
-            role="alert"
-          >
+          <div *ngIf="errorMessage.length" class="server-response lead">
             {{ errorMessage }}
           </div>
           <form [formGroup]="form" (submit)="validateCredentials(form)">
@@ -27,7 +23,9 @@
                 placeholder="Enter email"
                 autocomplete="off"
               />
-              <div *ngIf="form.controls.email.touched">
+              <div
+                *ngIf="form.controls.email.dirty || form.controls.email.touched"
+              >
                 <div
                   class="error"
                   *ngIf="form.get('email').hasError('required')"
@@ -57,7 +55,11 @@
                 </button>
               </div>
             </div>
-            <div *ngIf="form.controls.password.touched">
+            <div
+              *ngIf="
+                form.controls.password.dirty || form.controls.password.touched
+              "
+            >
               <div
                 class="error"
                 *ngIf="form.get('password').hasError('required')"
@@ -67,10 +69,11 @@
             </div>
             <button
               type="submit"
-              class="btn btn-primary mt-2"
-              [disabled]="form.invalid"
+              class="btn btn-outline-primary btn-sm mt-3"
+              [disabled]="form.invalid || isLoading"
             >
               <span *ngIf="!isLoading">
+                <i class="fal fa-id-card-alt"></i>
                 Sign In
               </span>
               <span *ngIf="isLoading">
