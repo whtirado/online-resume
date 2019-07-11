@@ -24,3 +24,7 @@ body {
   font-size: 0.8em;
   padding-top: 2px;
 }
+.server-response {
+  padding: 10px 0 10px 0;
+  margin-bottom: 5px;
+}
