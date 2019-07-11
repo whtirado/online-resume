@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 @Injectable()
 export class MessageComponent implements OnInit {
-  public messages: IMessage[] = [];
+  public messages = [];
   public errorMessage = '';
 
   constructor(
@@ -26,7 +26,6 @@ export class MessageComponent implements OnInit {
       this.messageService.getMessages(tokenData).subscribe(
         (response) => {
           this.messages = response.data;
-          console.log('get messages response', response);
         },
         (error) => {
           this.authService.clearAuthData();
@@ -39,7 +38,6 @@ export class MessageComponent implements OnInit {
   onDelete(messageId: string) {
     this.messageService.deleteMessage(messageId).subscribe(
       (deleteResponse) => {
-        console.log('delete successful', deleteResponse);
         const tokenData = { token: this.authService.getToken() };
         this.messageService.getMessages(tokenData).subscribe(
           (getResponse) => {
