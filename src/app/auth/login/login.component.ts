@@ -72,7 +72,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   validateCredentials(form) {
     this.errorMessage = '';
-    console.log('form', form);
     if (form.valid) {
       this.isLoading = true;
 

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -13,7 +13,7 @@ import { AboutMeComponent } from './about-me/about-me.component';
 import { AboutAppComponent } from './about-app/about-app.component';
 import { AuthModule } from './auth/auth.module';
 import { MessageComponent } from './message/message.component';
-import { ContactComponent } from './contact/contact.component';
+import { ContactModule } from './contact/contact.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,6 @@ import { ContactComponent } from './contact/contact.component';
     AboutAppComponent,
     SkillsComponent,
     ExperienceComponent,
-    ContactComponent,
     MessageComponent,
   ],
   imports: [
@@ -32,7 +31,8 @@ import { ContactComponent } from './contact/contact.component';
     AppRoutingModule,
     AuthModule,
     HttpClientModule,
-    FormsModule,
+    ReactiveFormsModule,
+    ContactModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

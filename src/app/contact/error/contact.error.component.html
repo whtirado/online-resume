@@ -1,0 +1,15 @@
+<section *ngIf="contactFormControl.dirty || contactFormControl.touched">
+  <div *ngIf="contactFormControl.hasError('required')" class="error">
+    *Required
+  </div>
+  <div *ngIf="contactFormControl.hasError('email')" class="error">
+    *Please enter a valid email
+  </div>
+  <div *ngIf="contactFormControl.hasError('minlength')" class="error">
+    *At least
+    {{ contactFormControl.errors.minlength.requiredLength }} characters
+  </div>
+  <div *ngIf="contactFormControl.hasError('maxlength')" class="error">
+    *At most {{ contactFormControl.errors.maxlength.requiredLength }} characters
+  </div>
+</section>

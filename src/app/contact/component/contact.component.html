@@ -1,6 +1,6 @@
 <section class="container mt-3 mt-3">
   <div class="row">
-    <div class="col-sm-12 col-md-6 offset-md-3">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
       <div class="card mt-1 mb-1">
         <div class="card-body">
           <h5 class="card-title">
@@ -15,7 +15,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12 col-md-6 offset-md-3">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
       <div class="card mt-1 mb-1">
         <div class="card-body">
           <h5 class="card-title">
@@ -30,7 +30,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12 col-md-6 offset-md-3">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
       <div class="card no-border mt-1 mb-1">
         <div class="card-body">
           <h5 class="card-title">
@@ -54,65 +54,72 @@
           >
             {{ successMessage }}
           </div>
-          <form #messageForm="ngForm" (submit)="submitMessage(messageForm)">
+          <form [formGroup]="form" (submit)="submitMessage(form)">
             <div class="row">
-              <div class="col">
+              <div class="col-xs-12 col-md">
                 <div class="form-group">
                   <input
-                    #name="ngModel"
+                    formControlName="name"
                     type="text"
                     name="name"
                     class="form-control"
-                    placeholder="*Your name..."
+                    placeholder="Name..."
+                    maxlength="20"
                     autocomplete="off"
-                    ngModel
-                    required
                   />
+                  <app-contact-error
+                    [contactFormControl]="form.get('name')"
+                  ></app-contact-error>
                 </div>
               </div>
-              <div class="col">
+              <div class="col-xs-12 col-md">
                 <div class="form-group">
                   <input
-                    #email="ngModel"
+                    formControlName="email"
                     type="email"
                     name="email"
                     class="form-control"
-                    placeholder="*Your email..."
+                    placeholder="Email..."
+                    maxlength="50"
                     autocomplete="off"
-                    ngModel
-                    required
-                    email
                   />
+                  <app-contact-error
+                    [contactFormControl]="form.get('email')"
+                  ></app-contact-error>
                 </div>
               </div>
             </div>
             <div class="form-group">
               <input
-                #subject="ngModel"
+                formControlName="subject"
                 type="text"
                 name="subject"
                 class="form-control"
-                placeholder="*Subject..."
+                placeholder="Subject..."
                 autocomplete="off"
-                ngModel
-                required
+                maxlength="50"
               />
+              <app-contact-error
+                [contactFormControl]="form.get('subject')"
+              ></app-contact-error>
             </div>
             <div class="form-group">
               <textarea
-                #message="ngModel"
+                formControlName="message"
                 name="message"
                 class="form-control"
-                placeholder="*Message..."
+                placeholder="Message..."
+                maxlength="250"
                 autocomplete="off"
-                ngModel
-                required
               ></textarea>
+              <app-contact-error
+                [contactFormControl]="form.get('message')"
+              ></app-contact-error>
             </div>
             <button
               type="submit"
-              class="btn btn-primary"
-              [disabled]="isLoading"
+              class="btn btn-primary mt-2"
+              [disabled]="form.invalid || isLoading"
             >
               <span *ngIf="!isLoading">
                 Send Message

@@ -8,7 +8,7 @@ import { LoginComponent } from './auth/login/login.component';
 // import { SignupComponent } from './auth/signup/signup.component';
 import { MessageComponent } from './message/message.component';
 import { AuthGuard } from './auth/auth.guard';
-import { ContactComponent } from './contact/contact.component';
+import { ContactComponent } from './contact/component/contact.component';
 
 const routes: Routes = [
   { path: 'About-Me', component: AboutMeComponent },
