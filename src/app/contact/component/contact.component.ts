@@ -62,7 +62,7 @@ export class ContactComponent implements OnInit {
     this.errorMessage = '';
   }
 
-  resetForm(form) {
+  resetForm() {
     this.clearModalMessages();
     this.form.reset();
   }
