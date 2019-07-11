@@ -19,3 +19,8 @@ body {
   border-bottom: 1px solid #ccc;
   border-radius: 0;
 }
+.error {
+  color: rgb(151, 18, 18);
+  font-size: 0.8em;
+  padding-top: 2px;
+}
