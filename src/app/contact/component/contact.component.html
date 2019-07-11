@@ -45,8 +45,9 @@
             class="card-link"
             data-toggle="modal"
             data-target="#ContactModal"
+            (click)="clearModalMessages()"
           >
-            <i class="fal fa-envelope"></i>
+            <i class="fal fa-envelope-open"></i>
             Compose Message
           </a>
         </div>
@@ -61,7 +62,7 @@
     aria-labelledby="ContactModalTitle"
     aria-hidden="true"
   >
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="ContactModalTitle">
@@ -77,18 +78,10 @@
           </button>
         </div>
         <div class="modal-body">
-          <div
-            *ngIf="errorMessage.length"
-            class="alert alert-warning"
-            role="alert"
-          >
+          <div *ngIf="errorMessage.length" class="server-response lead">
             {{ errorMessage }}
           </div>
-          <div
-            *ngIf="successMessage.length"
-            class="alert alert-success"
-            role="alert"
-          >
+          <div *ngIf="successMessage.length" class="server-response lead">
             {{ successMessage }}
           </div>
           <form
@@ -159,16 +152,27 @@
             </div>
             <button
               type="submit"
-              class="btn btn-primary"
+              class="btn btn-outline-primary btn-sm"
               [disabled]="form.invalid || isLoading"
             >
               <span *ngIf="!isLoading">
+                <i class="fal fa-envelope"></i>
                 Send Message
               </span>
               <span *ngIf="isLoading">
                 <i class="fal fa-cog fa-spin"></i>
                 Sending...
               </span>
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-secondary btn-sm float-right"
+              data-toggle="modal"
+              data-target="#ContactModal"
+              (click)="resetForm()"
+            >
+              <i class="fal fa-eraser"></i>
+              Cancel
             </button>
           </form>
         </div>

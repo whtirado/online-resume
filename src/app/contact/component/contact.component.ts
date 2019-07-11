@@ -57,9 +57,18 @@ export class ContactComponent implements OnInit {
     });
   }
 
-  submitMessage(form) {
+  clearModalMessages() {
     this.successMessage = '';
     this.errorMessage = '';
+  }
+
+  resetForm(form) {
+    this.clearModalMessages();
+    this.form.reset();
+  }
+
+  submitMessage(form) {
+    this.clearModalMessages();
     if (form.valid) {
       this.isLoading = true;
       const message: IContact = {
@@ -73,7 +82,7 @@ export class ContactComponent implements OnInit {
 
       this.contactService.sendMessage(message).subscribe(
         (response) => {
-          form.reset();
+          this.resetForm();
           this.isLoading = false;
           this.successMessage = response.message;
         },
