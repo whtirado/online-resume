@@ -78,10 +78,16 @@
           </button>
         </div>
         <div class="modal-body">
-          <div *ngIf="errorMessage.length" class="server-response lead">
+          <div
+            *ngIf="errorMessage.length"
+            class="server-response error-response lead"
+          >
             {{ errorMessage }}
           </div>
-          <div *ngIf="successMessage.length" class="server-response lead">
+          <div
+            *ngIf="successMessage.length"
+            class="server-response success-response lead"
+          >
             {{ successMessage }}
           </div>
           <form

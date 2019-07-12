@@ -10,7 +10,10 @@
           <h6 class="card-subtitle mb-2 text-muted">
             Please enter credentials
           </h6>
-          <div *ngIf="errorMessage.length" class="server-response lead">
+          <div
+            *ngIf="errorMessage.length"
+            class="server-response error-response lead"
+          >
             {{ errorMessage }}
           </div>
           <form [formGroup]="form" (submit)="validateCredentials(form)">

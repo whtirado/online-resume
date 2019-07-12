@@ -28,3 +28,9 @@ body {
   padding: 10px 0 10px 0;
   margin-bottom: 5px;
 }
+.server-response.error-response {
+  color: rgb(151, 18, 18);
+}
+.server-response.success-response {
+  color: rgb(40, 151, 18);
+}
